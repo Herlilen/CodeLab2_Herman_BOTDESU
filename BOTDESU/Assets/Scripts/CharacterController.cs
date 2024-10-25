@@ -49,6 +49,8 @@ public class CharacterController : MonoBehaviour
 
     public float smallMaxSpeed = 10f; // Maximum speed cap for small scale
     public float largeMaxSpeed = 15f; // Maximum speed cap for large scale
+    
+    public GameObject player; // New variable for the player GameObject
 
     void Awake()
     {
@@ -98,6 +100,10 @@ public class CharacterController : MonoBehaviour
 
         scaleCoroutine = StartCoroutine(SmoothScale(isLargeState ? largeScale : smallScale));
         currentMoveSpeed = isLargeState ? largeMoveSpeed : smallMoveSpeed;
+
+        // Change the tag based on the scale state
+        player.tag = isLargeState ? "Attack" : "Untagged";
+
         if (isLargeState)
         {
             AdjustCameraDistance();
